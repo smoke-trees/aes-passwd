@@ -4,13 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "smoke-trees",
+  "license": "MIT",
   "dependencies": {
     "aes-js": "^3.1.2"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smoke-trees/aes-passwd.git"
+  },
+  "bugs": {
+    "url": "https://github.com/smoke-trees/aes-passwd/issues"
+  },
+  "homepage": "https://github.com/smoke-trees/aes-passwd#readme",
   "devDependencies": {
     "standard": "^14.3.3"
   }

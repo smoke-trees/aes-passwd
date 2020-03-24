@@ -1,4 +1,4 @@
-const aesjs = require('aes-js')
+const Aesjs = require('aes-js')
 const crypto = require('crypto')
 
 function Aes (password1, password2) {
@@ -15,19 +15,18 @@ Aes.prototype.encrypt = function (message) {
   while (message.length % 16 !== 0) {
     message = message.concat('\u0000')
   }
-  const aes = new aesjs.ModeOfOperation.cbc(this.key, this.iv)
-  const bytes = aesjs.utils.utf8.toBytes(message)
+  const aes = new Aesjs.ModeOfOperation.cbc(this.key, this.iv)
+  const bytes = Aesjs.utils.utf8.toBytes(message)
   const cipher = aes.encrypt(bytes)
-  return aesjs.utils.hex.fromBytes(cipher).toString()
+  return Aesjs.utils.hex.fromBytes(cipher).toString()
 }
 
 Aes.prototype.decrypt = function (cipher) {
-  const cBytes = aesjs.utils.hex.toBytes(cipher)
-  const aes = new aesjs.ModeOfOperation.cbc(this.key, this.iv)
+  const cBytes = Aesjs.utils.hex.toBytes(cipher)
+  const aes = new Aesjs.ModeOfOperation.cbc(this.key, this.iv)
   const bytes = aes.decrypt(cBytes)
-  const message = aesjs.utils.utf8.fromBytes(bytes).toString()
+  const message = Aesjs.utils.utf8.fromBytes(bytes).toString()
   return (message)
 }
 
 module.exports = Aes
-
