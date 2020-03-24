@@ -15,15 +15,17 @@ Aes.prototype.encrypt = function (message) {
   while (message.length % 16 !== 0) {
     message = message.concat('\u0000')
   }
-  const aes = new Aesjs.ModeOfOperation.cbc(this.key, this.iv)
+  const CBC = Aesjs.ModeOfOperation.cbc
+  const aes = new CBC(this.key, this.iv)
   const bytes = Aesjs.utils.utf8.toBytes(message)
   const cipher = aes.encrypt(bytes)
   return Aesjs.utils.hex.fromBytes(cipher).toString()
 }
 
 Aes.prototype.decrypt = function (cipher) {
+  const CBC = Aesjs.ModeOfOperation.cbc
   const cBytes = Aesjs.utils.hex.toBytes(cipher)
-  const aes = new Aesjs.ModeOfOperation.cbc(this.key, this.iv)
+  const aes = new CBC(this.key, this.iv)
   const bytes = aes.decrypt(cBytes)
   const message = Aesjs.utils.utf8.fromBytes(bytes).toString()
   return (message)
