@@ -27,7 +27,7 @@ Aes.prototype.decrypt = function (cipher) {
   const cBytes = Aesjs.utils.hex.toBytes(cipher)
   const aes = new CBC(this.key, this.iv)
   const bytes = aes.decrypt(cBytes)
-  const message = Aesjs.utils.utf8.fromBytes(bytes).toString()
+  const message = Aesjs.utils.utf8.fromBytes(bytes).toString().replace(/\u0000/g, '')
   return (message)
 }
 
